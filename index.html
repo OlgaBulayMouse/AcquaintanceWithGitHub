@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>Hello, Olga! I am React!</title>
@@ -7,12 +8,50 @@
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
+
 <body>
     <div id='root'>
     </div>
     <script type='text/babel'>
-    </script>
-</body>
 
+        function ListItem({color, children}) {
+            return (
+                <li style={{color}}>
+                    {children}
+                </li>
+            );
+        };
+        function List({color, items}) {
+            return(
+                <ul>
+                    {items.map(item => (
+                        <ListItem color={color}>
+                            {item}
+                        </ListItem>
+                    ))}
+                </ul>
+            );  
+        };
+        function App() {
+            const list = [
+                'rose',
+                'tulip',
+                'chamomile',
+            ];
+            return(
+                <List
+                    color={'green'}
+                    items ={list}
+                />
+            );
+        };
+
+        ReactDOM.render(
+            <App />,
+            document.getElementById('root'),
+        );
+    </script>
+
+</body>
 
 </html>
