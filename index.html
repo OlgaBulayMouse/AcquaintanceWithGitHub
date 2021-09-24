@@ -14,24 +14,33 @@
     </div>
     <script type='text/babel'>
 
-        function ListItem({color, children}) {
+        function ListItem({color, children, handlerClick}) {
             return (
-                <li style={{color}}>
+                <li 
+                    onClick={handlerClick}
+                    style={{color}}>
                     {children}
                 </li>
             );
         };
         function List({color, items}) {
+            const clickListItemHandler = (evt) => {
+                console.log(evt.target.textContent)
+            };
             return(
                 <ul>
                     {items.map(item => (
-                        <ListItem color={color}>
+                        <ListItem 
+                        color={color}
+                        handlerClick={clickListItemHandler}
+                        >
                             {item}
                         </ListItem>
                     ))}
                 </ul>
             );  
         };
+
         function App() {
             const list = [
                 'rose',
