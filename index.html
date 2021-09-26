@@ -17,36 +17,39 @@
         class ListItem extends React.Component {
             constructor(props) {
                 super(props)
+                this.state = { fontStyle: 'normal' };
+                this.handlerClick = this.handlerClick.bind(this);
             };
             render() {
-                
                 return (
-                    <li 
-                        style={{ color: this.props.color }}
-                        onClick={this.props.handlerClick}
-                       >
+                    <li
+                        style={{
+                            color: this.props.color,
+                            fontStyle: this.state.fontStyle
+                        }}
+                        onClick={this.handlerClick}
+                    >
                         {this.props.children}
                     </li>
                 );
             };
-          
+            handlerClick() {
+                this.setState(
+                    { fontStyle: 'italic' }
+                );
+            };
         };
-      
+
         class List extends React.Component {
             constructor(props) {
-                super(props)
+                super(props);
             };
             render() {
-                
-                const handlerClick = (item) => {
-                console.log(item.target.textContent)
-            };
                 return (
                     <ul>
                         {this.props.items.map(item => (
                             <ListItem
-                                color={this.props.color }
-                                handlerClick={handlerClick}
+                                color={this.props.color}
                             >
                                 {item}
                             </ListItem>
@@ -54,27 +57,23 @@
                     </ul>
                 );
             };
-           
+
         };
 
         class App extends React.Component {
-
             render() {
-
                 const list = [
                     'rose',
                     'tulip',
                     'chamomile',
-                ]
+                ];
                 return (
                     <List
                         color={'#ff9966'}
                         items={list}
-
                     />
                 )
             };
-            
         };
 
         ReactDOM.render(
