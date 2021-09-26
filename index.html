@@ -14,51 +14,74 @@
     </div>
     <script type='text/babel'>
 
-        function ListItem({color, children, handlerClick}) {
-            return (
-                <li 
-                    onClick={handlerClick}
-                    style={{color}}>
-                    {children}
-                </li>
-            );
-        };
-        function List({color, items}) {
-            const clickListItemHandler = (evt) => {
-                console.log(evt.target.textContent)
+        class ListItem extends React.Component {
+            constructor(props) {
+                super(props)
             };
-            return(
-                <ul>
-                    {items.map(item => (
-                        <ListItem 
-                        color={color}
-                        handlerClick={clickListItemHandler}
-                        >
-                            {item}
-                        </ListItem>
-                    ))}
-                </ul>
-            );  
+            render() {
+                
+                return (
+                    <li 
+                        style={{ color: this.props.color }}
+                        onClick={this.props.handlerClick}
+                       >
+                        {this.props.children}
+                    </li>
+                );
+            };
+          
+        };
+      
+        class List extends React.Component {
+            constructor(props) {
+                super(props)
+            };
+            render() {
+                
+                const handlerClick = (item) => {
+                console.log(item.target.textContent)
+            };
+                return (
+                    <ul>
+                        {this.props.items.map(item => (
+                            <ListItem
+                                color={this.props.color }
+                                handlerClick={handlerClick}
+                            >
+                                {item}
+                            </ListItem>
+                        ))}
+                    </ul>
+                );
+            };
+           
         };
 
-        function App() {
-            const list = [
-                'rose',
-                'tulip',
-                'chamomile',
-            ];
-            return(
-                <List
-                    color={'green'}
-                    items ={list}
-                />
-            );
+        class App extends React.Component {
+
+            render() {
+
+                const list = [
+                    'rose',
+                    'tulip',
+                    'chamomile',
+                ]
+                return (
+                    <List
+                        color={'#ff9966'}
+                        items={list}
+
+                    />
+                )
+            };
+            
         };
 
         ReactDOM.render(
             <App />,
             document.getElementById('root'),
         );
+
     </script>
 
 </body>
