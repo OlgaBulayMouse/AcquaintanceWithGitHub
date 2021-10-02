@@ -17,18 +17,22 @@
         class ListItem extends React.Component {
             constructor(props) {
                 super(props)
-                this.state = { fontStyle: 'normal' };
+                this.state = {
+                    isActive: false,
+                    color: this.props.color,
+                    fontSize: this.props.fontSize,
+                };
                 this.click = this.click.bind(this);
-                this.toogleFontStyle=this.toogleFontStyle.bind(this);
-
+                this.toogleFontStyle = this.toogleFontStyle.bind(this);
+                this.toogleFontSeize = this.toogleFontSeize.bind(this);
             };
             render() {
                 return (
                     <li
                         style={{
-                            color: this.props.color,
-                            fontStyle: this.state.fontStyle,
-                            fontSize: this.props.fontSize
+                            color: !this.state.isActive ? this.props.color : 'red',
+                            fontStyle: this.state.isActive ? 'italic' : 'normal',
+                            fontSize: !this.state.isActive ? this.props.fontSize : 68,
                         }}
                         onClick={this.click}
                     >
@@ -38,18 +42,31 @@
             };
 
             click() {
-           //     this.handlerClick();
+                this.toogleColor();
                 this.toogleFontStyle();
+                this.toogleFontSeize();
             };
 
             toogleFontStyle() {
-                this.setState(
-                    { fontStyle: 'italic' }
-                );
+                this.setState(prevState => ({
+                    isActive: !prevState.isActive,
+                }
+                ), () => {
+                    console.log(this.state)
+                });
             };
-           // handlerClick() {
 
-           // }
+            toogleColor() {
+                this.setState({
+                    color: 'red'
+                });
+            };
+
+            toogleFontSeize() {
+                this.setState({
+                    fontSize: '58'
+                });
+            };
         };
 
         class List extends React.Component {
@@ -70,7 +87,6 @@
                     </ul>
                 );
             };
-
         };
 
         class App extends React.Component {
