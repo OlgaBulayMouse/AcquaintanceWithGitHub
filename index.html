@@ -18,26 +18,38 @@
             constructor(props) {
                 super(props)
                 this.state = { fontStyle: 'normal' };
-                this.handlerClick = this.handlerClick.bind(this);
+                this.click = this.click.bind(this);
+                this.toogleFontStyle=this.toogleFontStyle.bind(this);
+
             };
             render() {
                 return (
                     <li
                         style={{
                             color: this.props.color,
-                            fontStyle: this.state.fontStyle
+                            fontStyle: this.state.fontStyle,
+                            fontSize: this.props.fontSize
                         }}
-                        onClick={this.handlerClick}
+                        onClick={this.click}
                     >
                         {this.props.children}
                     </li>
                 );
             };
-            handlerClick() {
+
+            click() {
+           //     this.handlerClick();
+                this.toogleFontStyle();
+            };
+
+            toogleFontStyle() {
                 this.setState(
                     { fontStyle: 'italic' }
                 );
             };
+           // handlerClick() {
+
+           // }
         };
 
         class List extends React.Component {
@@ -50,6 +62,7 @@
                         {this.props.items.map(item => (
                             <ListItem
                                 color={this.props.color}
+                                fontSize={this.props.fontSize}
                             >
                                 {item}
                             </ListItem>
@@ -66,10 +79,13 @@
                     'rose',
                     'tulip',
                     'chamomile',
+                    'narcissus',
+                    'orhid',
                 ];
                 return (
                     <List
-                        color={'#ff9966'}
+                        fontSize={48}
+                        color={'#800008'}
                         items={list}
                     />
                 )
