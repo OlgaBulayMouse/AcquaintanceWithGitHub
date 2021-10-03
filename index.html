@@ -1,120 +1,17 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html >
+    <html>
 
-<head>
-    <meta charset="utf-8">
-    <title>Hello, Olga! I am React!</title>
-    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-</head>
+        <head>
+            <meta charset="utf-8">
+            <title>Hello, Olga!I am React!</title>
+            <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+            <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+            <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        </head>
 
-<body>
-    <div id='root'>
-    </div>
-    <script type='text/babel'>
+        <body>
+            <div id='root'></div>
+            <script type='text/babel' src="/index.js"></script>
+        </body>
 
-        class ListItem extends React.Component {
-            constructor(props) {
-                super(props)
-                this.state = {
-                    isActive: false,
-                    color: this.props.color,
-                    fontSize: this.props.fontSize,
-                };
-                this.click = this.click.bind(this);
-                this.toogleFontStyle = this.toogleFontStyle.bind(this);
-                this.toogleFontSeize = this.toogleFontSeize.bind(this);
-            };
-            render() {
-                return (
-                    <li
-                        style={{
-                            color: !this.state.isActive ? this.props.color : 'red',
-                            fontStyle: this.state.isActive ? 'italic' : 'normal',
-                            fontSize: !this.state.isActive ? this.props.fontSize : 68,
-                        }}
-                        onClick={this.click}
-                    >
-                        {this.props.children}
-                    </li>
-                );
-            };
-
-            click() {
-                this.toogleColor();
-                this.toogleFontStyle();
-                this.toogleFontSeize();
-            };
-
-            toogleFontStyle() {
-                this.setState(prevState => ({
-                    isActive: !prevState.isActive,
-                }
-                ), () => {
-                    console.log(this.state)
-                });
-            };
-
-            toogleColor() {
-                this.setState({
-                    color: 'red'
-                });
-            };
-
-            toogleFontSeize() {
-                this.setState({
-                    fontSize: '58'
-                });
-            };
-        };
-
-        class List extends React.Component {
-            constructor(props) {
-                super(props);
-            };
-            render() {
-                return (
-                    <ul>
-                        {this.props.items.map(item => (
-                            <ListItem
-                                color={this.props.color}
-                                fontSize={this.props.fontSize}
-                            >
-                                {item}
-                            </ListItem>
-                        ))}
-                    </ul>
-                );
-            };
-        };
-
-        class App extends React.Component {
-            render() {
-                const list = [
-                    'rose',
-                    'tulip',
-                    'chamomile',
-                    'narcissus',
-                    'orhid',
-                ];
-                return (
-                    <List
-                        fontSize={48}
-                        color={'#800008'}
-                        items={list}
-                    />
-                )
-            };
-        };
-
-        ReactDOM.render(
-            <App />,
-            document.getElementById('root'),
-        );
-
-    </script>
-
-</body>
-
-</html>
+    </html>
