@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class ListItem extends Component {
+export class ListItem extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -53,6 +53,4 @@ class ListItem extends Component {
             fontSize: '58'
         });
     };
-};
-
-export default ListItem;
+}

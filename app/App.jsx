@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import List from './components/List';
+import {List} from './components/List';
 
-class App extends Component {
+export class App extends Component {
     render() {
         const list = [
             'rose',
@@ -18,6 +18,4 @@ class App extends Component {
             />
         )
     };
-};
-
-export default App;
+}

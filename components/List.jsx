@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import ListItem from './components/ListItem';
+import {ListItem} from './components/ListItem';
 
-class List extends Component {
+export class List extends Component {
     constructor(props) {
         super(props);
     };
@@ -19,6 +19,4 @@ class List extends Component {
             </ul>
         );
     };
-};
-
-export default List;
+}
